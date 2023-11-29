@@ -1,6 +1,7 @@
 // Importing the necessary modules: Express for creating a web server and mysql2 for interacting with MySQL databases.
 const express = require('express');
 const mysql = require('mysql2');
+const inquirer = require('inquirer');
 
 // Defining a constant PORT that takes its value from the environment variable PORT or defaults to 3001.
 const PORT = process.env.PORT || 3001;
@@ -17,11 +18,9 @@ const db = mysql.createConnection(
   {
     host: 'localhost',
     user: 'root',
-    password: '',
-    database: 'classlist_db'
+    password: 'Driver1!',
+    database: 'emplist_db'
   },
-  // Logging a message when the connection is established.
-  console.log(`Connected to the classlist_db database.`)
 );
 
 // Executing a query to select all records from the 'students' table in the database.
