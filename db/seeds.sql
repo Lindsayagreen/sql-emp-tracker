@@ -2,6 +2,23 @@
 -- populates data into the tables defined in the schema.sql
 -- this file uses the INSERT command 
 
-INSERT INTO 
+INSERT INTO department (name)
 
-VALUES
+VALUES ("Sales"), ("Engineering"), ("HR"), ("Operations");
+
+INSERT INTO role (title, salary, department_id)
+
+VALUES ("Director", 250000, 4),
+("HR", 60000, 3),
+("personality hire", 100000, 1),
+("janitor", 85000, 2);
+
+INSERT INTO employee (first_name, last_name, role_id, manager_id)
+
+VALUES ("Mark", "Walberg", 2, null),
+("Jennifer", "Lawernce", 3, null),
+("Ben", "Affleck", 4, null),
+("Kris", "Jenner", 1, null);
+
+
+
