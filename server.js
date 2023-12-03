@@ -28,8 +28,22 @@ const initQuestions = () => inquirer.prompt({
   name: "option"
 })
 .then(({option}) => {
-if (option === "View departments") {
-  viewDept()
+  if (option === "Add department") {
+    addDept();
+} else if (option === "Add role") {
+    addRole();
+} else if (option === "Add employee") {
+    addEmp();
+} else if (option === "View departments") {
+    viewDepartment();
+} else if (option === "View roles") {
+    viewRoles();
+} else if (option === "View employees") {
+    viewEmp();
+} else if (option === "Update employee role") {
+    updateEmp();
+} else {
+    quit();
 }
 })
 
@@ -53,7 +67,7 @@ name: "deptName"
   })
 });
 
-//choose ADD role
+//ADD role
 //prompted to enter the name, salary, and department for the role and that role is added to the database
 const addRole = () => inquirer.prompt([
   { type: "input", message: "What's the name of the role?", name: "roleName" },
@@ -73,7 +87,7 @@ const addRole = () => inquirer.prompt([
       });
 });
 
-//choose to ADD employee
+//ADD employee
 //prompted to enter the employee’s first name, last name, role, and manager, and that employee is added to the database
 const addEmp = () => inquirer.prompt([
   { type: "input", message: "What's the first name of the employee?", name: "firstName" },
@@ -96,11 +110,10 @@ const addEmp = () => inquirer.prompt([
 
 //choose to update an employee role
 // prompted to select an employee to update and their new role and this information is updated in the database
-// inquirer.prompt
 
 const updateEmp = () => inquirer.prompt([
-  { type: "input", message: "Which employee would you like to update?", name: "updateEmployee" },
-  { type: "input", message: "What do you want to update to?", name: "updateRole" }
+  { type: "input", message: "What is the first name of the employee you want to update?", name: "updateEmployee" },
+  { type: "input", message: "Insert the new desired role id?", name: "updateRole" }
 ]).then(answer => {
   console.log("Updating employee:", answer.updateEmployee, "to role:", answer.updateRole);
 
@@ -148,3 +161,8 @@ const viewEmp = () => db.promise().execute("SELECT * FROM employee")
         console.error(err);
         initQuestions();
     });
+
+    const quit = () => {
+      db.end();
+      process.exit();
+  };
